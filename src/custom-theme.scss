@@ -5,7 +5,8 @@
 
 
 $catalogo-mascotas-primary: mat.define-palette(mat.$brown-palette, 700);
-$catalogo-mascotas-accent: mat.define-palette(mat.$teal-palette, A400);
+$catalogo-mascotas-accent: mat.define-palette(mat.$amber-palette, 500);
+
 
 // The warn palette is optional (defaults to red).
 $catalogo-mascotas-warn: mat.define-palette(mat.$red-palette);

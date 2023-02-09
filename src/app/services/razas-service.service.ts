@@ -28,6 +28,6 @@ export class RazasServiceService  extends CommonsServiceService<Raza>{
     formData.append('archivo', archivo);
     formData.append('nombre', raza.nombre);
 
-    return this.http.post<Raza>(`${this.URL}actualizar-con-foto/${raza.id}`, formData);
+    return this.http.put<Raza>(`${this.URL}actualizar-con-foto/${raza.id}`, formData);
   }
 }

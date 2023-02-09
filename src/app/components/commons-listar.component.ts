@@ -9,11 +9,10 @@ export abstract class CommonsListarComponent<E extends Generic, S extends Common
 
   titulo: string;
   lista: E[];
-  model: E;
   totalRegistros = 0;
   paginaActual = 0;
-  totalXPagina = 8;
-  pageSizeOptions: number[] =  [4, 8, 16, 32, 100];
+  totalXPagina = 9;
+  pageSizeOptions: number[] =  [3, 9, 18, 32, 100];
   protected nombreEntity: string;
 
 

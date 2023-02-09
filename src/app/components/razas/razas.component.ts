@@ -15,7 +15,6 @@ export class RazasComponent extends CommonsListarComponent<Raza, RazasServiceSer
     super(service);
     this.titulo = 'Listado de Razas de mascotas';
     this.nombreEntity = Raza.name;
-    this.model = new Raza();
   }
 
 }
