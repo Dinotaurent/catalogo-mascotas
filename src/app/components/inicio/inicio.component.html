@@ -1,0 +1,19 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Inicio</h1>
+  <mat-grid-list cols="2" rowHeight="450px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>{{card.title}}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div style="border-radius: 120px;"><img mat-card-xl-image  src="{{card.img}}"></div>
+          <div class="m-3"><h4>{{card.texto}}</h4></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

@@ -1,0 +1,27 @@
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+
+$catalogo-mascotas-primary: mat.define-palette(mat.$brown-palette, 700);
+$catalogo-mascotas-accent: mat.define-palette(mat.$teal-palette, A400);
+
+// The warn palette is optional (defaults to red).
+$catalogo-mascotas-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$catalogo-mascotas-theme: mat.define-dark-theme((
+  color: (
+    primary: $catalogo-mascotas-primary,
+    accent: $catalogo-mascotas-accent,
+    warn: $catalogo-mascotas-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($catalogo-mascotas-theme);
+
