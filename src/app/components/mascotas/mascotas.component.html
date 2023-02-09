@@ -1,1 +1,76 @@
-<p>mascotas works!</p>
+<div class="grid-container">
+  <h1 class="mat-h1">{{ titulo }}</h1>
+  <div
+    class="alert alert-info m-5"
+    *ngIf="lista == undefined || lista.length == 0"
+  >
+    No existen mascotas o no se pudo conectar a la base de datos
+  </div>
+  <button mat-raised-button color="primary" routerLink="/mascotas/form">
+    Nuevo
+  </button>
+
+  <mat-grid-list cols="3" rowHeight="450px" *ngIf="lista?.length > 0">
+    <mat-grid-tile *ngFor="let item of lista">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title
+            ><h3>{{ item.nombre }} - Edad: {{ item.edad }}</h3></mat-card-title
+          >
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div *ngIf="item?.fotoHashCode">
+            <img
+              mat-card-image
+              [src]="
+                URL +
+                'ver-foto/' +
+                item.id +
+                '?fotoHashCode=' +
+                item.fotoHashCode
+              "
+              class="img-thumbnail"
+              style="width: 300px; height: 280px; border-radius: 60px"
+            />
+          </div>
+          <div *ngIf="item?.fotoHashCode == null || undefined">
+            <img
+              mat-card-image
+              src="../../../assets/images/no-foto-mascota.png"
+              class="img-thumbnail"
+              style="width: 300px; height: 280px; border-radius: 60px"
+            />
+          </div>
+        </mat-card-content>
+        <!-- <mat-card-content class="dashboard-card-content">
+
+  </mat-card-content> -->
+
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            color="accent"
+            class="m-3"
+            [routerLink]="['/mascotas/form/', item.id]"
+          >
+            Editar
+          </button>
+          <button mat-raised-button color="warn" (click)="eliminar(item)">
+            Eliminar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-paginator
+    [length]="totalRegistros"
+    [pageSize]="totalXPagina"
+    [pageIndex]="paginaActual"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="paginar($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>
