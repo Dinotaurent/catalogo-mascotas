@@ -4,6 +4,7 @@ import { Raza } from './../models/raza';
 import { Injectable } from '@angular/core';
 import { CommonsServiceService } from './commons-service.service';
 import { URL_BASE } from '../config/app';
+import { Mascota } from '../models/mascota';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,26 @@ export class RazasServiceService  extends CommonsServiceService<Raza>{
     formData.append('nombre', raza.nombre);
 
     return this.http.put<Raza>(`${this.URL}actualizar-con-foto/${raza.id}`, formData);
+  }
+
+  asignarMascotas(
+    raza: Raza,
+    mascotas: Mascota[]
+  ): Observable<Raza> {
+    return this.http.put<Raza>(
+      `${this.URL}${raza.id}/asignar-mascota`,
+      mascotas,
+      { headers: this.headers }
+    );
+  }
+
+  removerMascota(raza: Raza, mascota: Mascota): Observable<Raza> {
+    return this.http.put<Raza>(
+      `${this.URL}${raza.id}/remover-mascota`,
+      mascota,
+      {
+        headers: this.headers,
+      }
+    );
   }
 }

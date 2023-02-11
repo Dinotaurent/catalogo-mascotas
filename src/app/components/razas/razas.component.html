@@ -7,9 +7,18 @@
     No existen Razas o no se pudo conectar a la base de datos
   </div>
   <button mat-raised-button color="primary" routerLink="/razas/form">Nuevo</button>
+  <div class="m-3">
+    <mat-form-field class="mx-3">
+      <input
+        matInput
+        placeholder="Buscar raza"
+        (keyup)="filtrar($event)"
+      />
+    </mat-form-field>
+  </div>
 
   <mat-grid-list cols="3" rowHeight="450px" *ngIf="lista?.length > 0">
-    <mat-grid-tile *ngFor="let item of lista">
+    <mat-grid-tile *ngFor="let item of listaFiltrada">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -50,6 +59,7 @@
           <button mat-raised-button color="warn" (click)="eliminar(item)">
             Eliminar
           </button>
+          <button mat-raised-button color="primary" class="m-3" [routerLink]="['/razas/asignar-mascotas/', item.id]" >Mascotas ({{item.mascotas.length}})</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

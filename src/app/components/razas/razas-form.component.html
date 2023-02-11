@@ -2,12 +2,9 @@
   <h1 class="mat-h1">{{ titulo }}</h1>
   <button mat-raised-button color="primary" routerLink="/razas">Regresar</button>
 
-  <mat-grid-list cols="1" rowHeight="760px">
+  <mat-grid-list cols="1"  rowHeight="800px">
     <mat-grid-tile>
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-        </mat-card-header>
+      <mat-card class="dashboard-card" class="card-with-dynamic-height">
         <mat-card-content class="dashboard-card-content">
 
 
@@ -65,29 +62,6 @@
                 </button>
               </div>
             </form>
-
-          <!-- <div *ngIf="item?.fotoHashCode">
-            <img
-              mat-card-image
-              [src]="
-                URL +
-                'ver-foto/' +
-                item.id +
-                '?fotoHashCode=' +
-                item.fotoHashCode
-              "
-              class="img-thumbnail"
-              style="width: 300px; height: 280px; border-radius: 60px"
-            />
-          </div>
-          <div *ngIf="item?.fotoHashCode == null || undefined">
-            <img
-              mat-card-image
-              src="../../../assets/images/no-foto-mascota.png"
-              class="img-thumbnail"
-              style="width: 300px; height: 280px; border-radius: 60px"
-            />
-          </div> -->
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

@@ -22,9 +22,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { RazasFormComponent } from './components/razas/razas-form.component';
 import { MascotasFormComponent } from './components/mascotas/mascotas-form.component';
+import { AsignarMascotasComponent } from './components/razas/asignar-mascotas.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,7 @@ import { MascotasFormComponent } from './components/mascotas/mascotas-form.compo
     MascotasComponent,
     RazasFormComponent,
     MascotasFormComponent,
+    AsignarMascotasComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,10 @@ import { MascotasFormComponent } from './components/mascotas/mascotas-form.compo
     MatPaginatorModule,
     MatListModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatTabsModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

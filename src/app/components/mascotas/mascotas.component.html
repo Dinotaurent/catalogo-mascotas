@@ -9,9 +9,18 @@
   <button mat-raised-button color="primary" routerLink="/mascotas/form">
     Nuevo
   </button>
+  <div class="m-3">
+    <mat-form-field class="mx-3">
+      <input
+        matInput
+        placeholder="Buscar mascota"
+        (keyup)="filtrar($event)"
+      />
+    </mat-form-field>
+  </div>
 
   <mat-grid-list cols="3" rowHeight="450px" *ngIf="lista?.length > 0">
-    <mat-grid-tile *ngFor="let item of lista">
+    <mat-grid-tile *ngFor="let item of listaFiltrada">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>

@@ -20,6 +20,7 @@ export class MascotasServiceService extends CommonsServiceService<Mascota>{
     const formData = new FormData();
     formData.append('archivo', archivo);
     formData.append('nombre', mascota.nombre);
+    formData.append('edad', mascota.edad.toString());
 
     return this.http.post<Mascota>(`${this.URL}registrar-con-foto`, formData);
   }
@@ -28,13 +29,9 @@ export class MascotasServiceService extends CommonsServiceService<Mascota>{
     const formData = new FormData();
     formData.append('archivo', archivo);
     formData.append('nombre', mascota.nombre);
+    formData.append('edad', mascota.edad.toString());
 
     return this.http.put<Mascota>(`${this.URL}actualizar-con-foto/${mascota.id}`, formData);
   }
 
-  buscarMascotaXNombre(nombre: string): Observable<Mascota[]> {
-    return this.http.get<Mascota[]>(
-      `${this.URL}buscar-mascota-x-nombre/${nombre}`
-    );
-  }
 }

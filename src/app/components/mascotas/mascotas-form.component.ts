@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mascotas-form',
-  templateUrl: './mascotas-form.component.html'
+  templateUrl: './mascotas-form.component.html',
+  styleUrls: ['./mascotas.component.css'],
 })
 export class MascotasFormComponent extends CommonsFormComponent<Mascota, MascotasServiceService> {
   URL = `${URL_BASE}mascotas/`;

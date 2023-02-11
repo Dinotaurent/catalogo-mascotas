@@ -40,4 +40,11 @@ export abstract class CommonsServiceService<E extends Generic> {
   public eliminar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.URL}${id}`);
   }
+
+  public buscarXNombre(nombre: string): Observable<E[]> {
+      return this.http.get<E[]>(
+        `${this.URL}buscar-x-nombre/${nombre}`
+      );
+    }
+
 }

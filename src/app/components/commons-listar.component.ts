@@ -5,16 +5,20 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 
 @Directive()
-export abstract class CommonsListarComponent<E extends Generic, S extends CommonsServiceService<E>> implements OnInit{
-
+export abstract class CommonsListarComponent<
+  E extends Generic,
+  S extends CommonsServiceService<E>
+> implements OnInit
+{
   titulo: string;
   lista: E[];
+  datosFiltrados: E[] = [];
+  listaFiltrada: E[] = [];
   totalRegistros = 0;
   paginaActual = 0;
   totalXPagina = 9;
-  pageSizeOptions: number[] =  [3, 9, 18, 32, 100];
+  pageSizeOptions: number[] = [3, 9, 18, 32, 100];
   protected nombreEntity: string;
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -24,22 +28,48 @@ export abstract class CommonsListarComponent<E extends Generic, S extends Common
     this.calcularRangos();
   }
 
-
   paginar(event: PageEvent): void {
     this.paginaActual = event.pageIndex;
     this.totalXPagina = event.pageSize;
     this.calcularRangos();
   }
 
-  calcularRangos(){
-    this.service.listarXPagina(
-      this.paginaActual.toString(),
-      this.totalXPagina.toString()
-    ).subscribe(p => {
-      this.lista = p.content as E[];
-      this.totalRegistros = p.totalElements as number;
-      this.paginator._intl.itemsPerPageLabel = 'Registros por pagina';
-    })
+  calcularRangos() {
+    this.service
+      .listarXPagina(this.paginaActual.toString(), this.totalXPagina.toString())
+      .subscribe((p) => {
+        this.lista = p.content as E[];
+        this.listaFiltrada = this.lista;
+        this.totalRegistros = p.totalElements as number;
+        this.paginator._intl.itemsPerPageLabel = 'Registros por pagina';
+      });
+  }
+
+  filtrar(event: any): void {
+    let nombre: string = (<HTMLInputElement>event.target).value;
+    nombre = nombre !== undefined ? nombre.trim() : '';
+
+    if (nombre !== '') {
+      this.listaFiltrada = [];
+      this.service.buscarXNombre(nombre).subscribe(
+        (datos) =>{
+          (this.datosFiltrados = datos.filter((dato) => {
+            let filtrado = true;
+            this.lista.forEach((dl) => {
+
+              if (dato.id === dl.id) {
+                filtrado = false;
+                this.listaFiltrada.push(dl);
+              }
+            });
+            return filtrado;
+          }))
+          this.totalRegistros = this.listaFiltrada.length;
+        }
+      );
+    } else {
+      this.calcularRangos();
+    }
   }
 
   eliminar(e: E): void {
@@ -56,13 +86,8 @@ export abstract class CommonsListarComponent<E extends Generic, S extends Common
         this.service.eliminar(e.id).subscribe(() => {
           this.calcularRangos();
         });
-        Swal.fire(
-          'Eliminado!',
-          `${e.nombre} fue borrado`,
-          'success'
-        );
+        Swal.fire('Eliminado!', `${e.nombre} fue borrado`, 'success');
       }
     });
   }
-
 }

@@ -1,1 +1,110 @@
-<p>mascotas-form works!</p>
+<div class="grid-container">
+  <h1 class="mat-h1">{{ titulo }}</h1>
+  <button mat-raised-button color="primary" routerLink="/mascotas">Regresar</button>
+
+  <mat-grid-list cols="1" rowHeight="880px">
+    <mat-grid-tile>
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+
+
+            <form>
+              <div class="mb-3 m-5">
+                <label class="form-label" for="nombre">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nombre"
+                  [(ngModel)]="model.nombre"
+                  placeholder="Nombre de la mascota"
+                />
+                <div class="alert alert-danger" *ngIf="error?.nombre">
+                  {{ error.nombre }}
+                </div>
+              </div>
+
+              <div class="mb-3 m-5">
+                <label class="form-label" for="edad">Edad</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="edad"
+                  [(ngModel)]="model.edad"
+                  placeholder="Edad"
+                />
+                <div class="alert alert-danger" *ngIf="error?.edad">
+                  {{ error.edad }}
+                </div>
+              </div>
+
+              <div class="mb-3 m-5" *ngIf="!model.fotoHashCode && model?.id">
+                <img
+                src="../../../assets/images/no-foto-mascota.png"
+                class="img-thumbnail"
+                style="width: 120px; border-radius: 30px;">
+              </div>
+              <div class="mb-3 m-5" *ngIf="model?.fotoHashCode && model?.id">
+                <label class="form-label" for="fotoAnterior">Foto anterior</label>
+                <div class="mb-2 m-2">
+                <img
+                [src]="URL + 'ver-foto/' + model.id + '?fotoHashCode=' + model.fotoHashCode"
+                class="img-thumbnail"
+                style="width: 250px; border-radius: 30px;">
+                </div>
+              </div>
+
+
+              <div class="mb-3 m-5">
+                <label class="form-label" for="foto">Foto</label>
+                <input (change)="subirFoto($event)"
+                  type="file"
+                  class="form-control"
+                  id="foto"
+                  aria-describedby="inputGroupFileAddon04"
+                  aria-label="Upload"
+                />
+              </div>
+
+
+              <div class="mb-5 form-check m-4">
+                <button
+                  type="submit"
+                  mat-raised-button color="accent"
+                  (click)="model.id ? editar() : crear()"
+                >
+                  Guardar
+                </button>
+              </div>
+            </form>
+
+          <!-- <div *ngIf="item?.fotoHashCode">
+            <img
+              mat-card-image
+              [src]="
+                URL +
+                'ver-foto/' +
+                item.id +
+                '?fotoHashCode=' +
+                item.fotoHashCode
+              "
+              class="img-thumbnail"
+              style="width: 300px; height: 280px; border-radius: 60px"
+            />
+          </div>
+          <div *ngIf="item?.fotoHashCode == null || undefined">
+            <img
+              mat-card-image
+              src="../../../assets/images/no-foto-mascota.png"
+              class="img-thumbnail"
+              style="width: 300px; height: 280px; border-radius: 60px"
+            />
+          </div> -->
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

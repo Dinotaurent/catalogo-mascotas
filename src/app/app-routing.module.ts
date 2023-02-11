@@ -1,3 +1,4 @@
+import { AsignarMascotasComponent } from './components/razas/asignar-mascotas.component';
 import { RazasFormComponent } from './components/razas/razas-form.component';
 import { MascotasComponent } from './components/mascotas/mascotas.component';
 import { RazasComponent } from './components/razas/razas.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'razas', component: RazasComponent },
   { path: 'razas/form', component: RazasFormComponent },
   { path: 'razas/form/:id', component: RazasFormComponent },
+  { path: 'razas/asignar-mascotas/:id', component: AsignarMascotasComponent },
   { path: 'mascotas', component: MascotasComponent },
   { path: 'mascotas/form', component: MascotasFormComponent },
   { path: 'mascotas/form/:id', component: MascotasFormComponent },
